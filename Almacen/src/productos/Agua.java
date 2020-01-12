@@ -3,8 +3,8 @@ package productos;
 public final class Agua extends Producto{
 	private String origen;
 
-	public Agua(String identificador, double litros, double precio, String marca, String origen) {
-		super(identificador, litros, precio, marca);
+	public Agua(String identificador, double litros, double precio, String marca, String origen,String nombre) {
+		super(identificador, litros, precio, marca, origen);
 		this.origen = origen;
 	}
 

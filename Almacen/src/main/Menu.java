@@ -8,7 +8,7 @@ public class Menu {
 		int opc=0;
 		do {
 			leer = new Scanner(System.in);
-			System.out.println("");
+			System.out.println("****************************MEÑU****************************");
 			System.out.println("1.        Calcular precio de todos los productos");
 			System.out.println("2.   Calcular precio de todas las bebidas de una marca");
 			System.out.println("3. Calcular precio de las bebidas de una estanteria (columna)");
@@ -32,5 +32,34 @@ public class Menu {
 		
 		
 		return opc;
+	}
+	
+	public static int tipoProducto() {
+		Scanner leer;
+		int opc=0;
+		do {
+			leer = new Scanner(System.in);
+			System.out.println("**********************OPCIONES*****************************");
+			System.out.println("1.              guardar producto no azucarado");
+			System.out.println("2.              guardar bebida azucarada");
+			System.out.println("3.                     atras");
+
+			
+			try {
+				opc=leer.nextInt();
+			} catch (Exception e) {
+				System.out.println("Error de lectura");
+			}
+			
+			
+			
+			
+		} while (opc<1||opc>3);
+		
+		
+		
+		
+		return opc;
+		
 	}
 }

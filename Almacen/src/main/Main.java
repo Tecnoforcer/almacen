@@ -12,8 +12,9 @@ public class Main {
 		int filas = 10;//10 por simplificar
 		int columnas = 10;//10 por simplificar
 		int opc = 0;
-
-		Producto alamcen[][] =new Producto[filas][columnas];
+		int opcAUX = 0;
+		Almacen al=new Almacen(filas, columnas);
+		
 		
 		
 		
@@ -21,22 +22,30 @@ public class Main {
 			opc=Menu.pintaMenu();
 			switch (opc) {
 			case 1:
-				Gestion.precioDeTodo(alamcen);
+				al.precioDeTodo();
 				break;
 			case 2:
-				Gestion.precioPorMarca(alamcen);
+				al.precioPorMarca();
 				break;
 			case 3:
-				
+				al.precioEstanteria();
 				break;
 			case 4:
+				do {
+				opcAUX=Menu.tipoProducto();
+				if (opcAUX==1) {
+					al.agregarProductoAgua();
+				} else if (opcAUX==2) {
+					al.agregarProductoAzucar();
+				}
+				}while (opcAUX!=3);
 				
 				break;
 			case 5:
-				
+				al.eliminarProducto();
 				break;
 			case 6:
-				
+				al.mostrarInformacion();
 				break;
 			default:
 				System.out.println("ADIOS");

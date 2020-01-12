@@ -5,13 +5,15 @@ public abstract class Producto {
 	protected double litros;
 	protected double precio;
 	protected String marca;
+	protected String nombre;
 	
 
-	public Producto(String identificador, double litros, double precio, String marca) {
+	public Producto(String identificador, double litros, double precio, String marca,String nombre) {
 		this.identificador = identificador;
 		this.litros = litros;
 		this.precio = precio;
 		this.marca = marca;
+		this.nombre=nombre;
 	}
 	
 		public String getIdentificador() {
@@ -44,6 +46,15 @@ public abstract class Producto {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	@Override
