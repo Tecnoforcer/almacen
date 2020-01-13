@@ -93,7 +93,6 @@ public class Almacen {
 		Scanner leerD;
 
 		String identificador = "";
-		String identificadorAUX = "";
 		String nombre = "";
 		String marca = "";
 		double litros = 0;
@@ -121,10 +120,8 @@ public class Almacen {
 		rotura: while (true) {
 			for (int i = 0; i < almacen.length; i++) {
 				for (int j = 0; j < almacen[i].length; j++) {
-					if (almacen[i][j] == null) {
-						identificador = i + j + "";
-						identificadorAUX = identificador.hashCode() + "";
-						identificador = nombre + marca + identificadorAUX;
+					if (almacen[i][j] == null || almacen[i][j].getIdentificador() == "") {
+						identificador = nombre + marca + i + j;
 						System.out.println("el identificador de este producto es " + identificador);
 						almacen[i][j] = new Agua(identificador, litros, precio, marca, origen, nombre);
 					} else {
@@ -143,7 +140,6 @@ public class Almacen {
 		Scanner leerD;
 
 		String identificador = "";
-		String identificadorAUX = "";
 		String nombre = "";
 		String marca = "";
 		double litros = 0;
@@ -165,7 +161,7 @@ public class Almacen {
 				precio = leerD.nextDouble();
 				ofer = leerS.nextLine();
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("error de lectura");
 			}
 
 		} while (!correcto);
@@ -176,10 +172,9 @@ public class Almacen {
 		rotura: while (true) {
 			for (int i = 0; i < almacen.length; i++) {
 				for (int j = 0; j < almacen[i].length; j++) {
-					if (almacen[i][j] == null) {
-						identificador = i + j + "";
-						identificadorAUX = identificador.hashCode() + "";
-						identificador = nombre + marca + identificadorAUX;
+					if (almacen[i][j] == null || almacen[i][j].getIdentificador() == "") {
+
+						identificador = nombre + marca + i + j;
 						System.out.println("el identificador de este producto es " + identificador);
 						almacen[i][j] = new Bebida_Azucarada(identificador, litros, precio, marca, oferta, nombre);
 					} else {
@@ -192,51 +187,46 @@ public class Almacen {
 		}
 
 	}
+
 	public void eliminarProducto() {
 		Scanner leer;
-		String buscado="";
-		boolean correcto =false;
-		
+		String buscado = "";
+		boolean correcto = false;
+
 		do {
-			leer=new Scanner(System.in);
-			
+			leer = new Scanner(System.in);
+
 			try {
-				correcto=true;
-			System.out.println("introduzca el id del producto que se quiere eliminar");
-			buscado=leer.nextLine();
+				correcto = true;
+				System.out.println("introduzca el id del producto que se quiere eliminar");
+				buscado = leer.nextLine();
 			} catch (Exception e) {
 				System.out.println("error de lectura");
 			}
-			
+
 			for (int i = 0; i < almacen.length; i++) {
 				for (int j = 0; j < almacen[i].length; j++) {
-					if ((almacen[i][j]!=null)&&(almacen[i][j].getNombre().equalsIgnoreCase(buscado))) {
-						//ni idea 
+					if ((almacen[i][j] != null) && (almacen[i][j].getNombre().equalsIgnoreCase(buscado))) {
+						almacen[i][j].setIdentificador("");
+						almacen[i][j].setNombre("");
+						almacen[i][j].setMarca("");
+					} else {
+						System.out.println("no se pudo realizar la accion");
 					}
 				}
 			}
-			
-			
-			
-			
+
 		} while (!correcto);
-		
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
 	public void mostrarInformacion() {
 		for (int i = 0; i < almacen.length; i++) {
 			for (int j = 0; j < almacen[i].length; j++) {
-				if ((almacen[i][j]!=null)) {
+				if ((almacen[i][j] != null)) {
 					System.out.println(almacen[i][j]);
 				}
-				
+
 			}
 		}
 
