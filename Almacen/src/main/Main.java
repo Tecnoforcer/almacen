@@ -9,17 +9,14 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner leerS = new Scanner(System.in);
 		Scanner leerI = new Scanner(System.in);
-		int filas = 10;//10 por simplificar
-		int columnas = 10;//10 por simplificar
+		int filas = 10;// 10 por simplificar
+		int columnas = 10;// 10 por simplificar
 		int opc = 0;
 		int opcAUX = 0;
-		Almacen al=new Almacen(filas, columnas);
-		
-		
-		
-		
+		Almacen al = new Almacen(filas, columnas);
+
 		do {
-			opc=Menu.pintaMenu();
+			opc = Menu.pintaMenu();
 			switch (opc) {
 			case 1:
 				al.precioDeTodo();
@@ -32,14 +29,14 @@ public class Main {
 				break;
 			case 4:
 				do {
-				opcAUX=Menu.tipoProducto();
-				if (opcAUX==1) {
-					al.agregarProductoAgua();
-				} else if (opcAUX==2) {
-					al.agregarProductoAzucar();
-				}
-				}while (opcAUX!=3);
-				
+					opcAUX = Menu.tipoProducto();
+					if (opcAUX == 1) {
+						al.agregarProductoAgua();
+					} else if (opcAUX == 2) {
+						al.agregarProductoAzucar();
+					}
+				} while (opcAUX != 3);
+
 				break;
 			case 5:
 				al.eliminarProducto();
@@ -51,25 +48,9 @@ public class Main {
 				System.out.println("ADIOS");
 				break;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		} while (opc!=7);
-		
-		
-		
+
+		} while (opc != 7);
+
 	}
 
 }

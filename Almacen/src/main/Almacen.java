@@ -16,7 +16,7 @@ public class Almacen {
 		double total = 0;
 		for (int i = 0; i < almacen.length; i++) {
 			for (int j = 0; j < almacen[i].length; j++) {
-				if (almacen[i][j] != null) {
+				if (almacen[i][j] != null && almacen[i][j].getIdentificador() != "") {
 					total += almacen[i][j].getPrecio();
 				}
 			}
@@ -63,8 +63,9 @@ public class Almacen {
 		double total = 0;
 
 		do {
-			leerI = new Scanner(System.in);
 			System.out.println("numero de estanteria:");
+			leerI = new Scanner(System.in);
+
 			try {
 				correcto = true;
 				estanteria = leerI.nextInt();
@@ -79,7 +80,7 @@ public class Almacen {
 		} while (!correcto);
 
 		for (int i = 0; i < almacen[estanteria].length; i++) {
-			if (almacen[estanteria][i] != null) {
+			if (almacen[estanteria][i] != null && almacen[estanteria][i].getIdentificador() != "") {
 				total += almacen[estanteria][i].getPrecio();
 			}
 		}
@@ -197,39 +198,47 @@ public class Almacen {
 			leer = new Scanner(System.in);
 
 			try {
-				correcto = true;
+				correcto = false;
 				System.out.println("introduzca el id del producto que se quiere eliminar");
 				buscado = leer.nextLine();
 			} catch (Exception e) {
 				System.out.println("error de lectura");
+				correcto = true;
 			}
+		} while (correcto);
 
-			for (int i = 0; i < almacen.length; i++) {
-				for (int j = 0; j < almacen[i].length; j++) {
-					if ((almacen[i][j] != null) && (almacen[i][j].getNombre().equalsIgnoreCase(buscado))) {
-						almacen[i][j].setIdentificador("");
-						almacen[i][j].setNombre("");
-						almacen[i][j].setMarca("");
-					} else {
-						System.out.println("no se pudo realizar la accion");
-					}
+		rotura: for (int i = 0; i < almacen.length; i++) {
+			for (int j = 0; j < almacen[i].length; j++) {
+				if ((almacen[i][j] != null) && (almacen[i][j].getIdentificador().equalsIgnoreCase(buscado))) {
+					almacen[i][j] = null;
+					System.out.println("operacion realizada con exito");
+					correcto = true;
+					break rotura;
 				}
 			}
-
-		} while (!correcto);
+		}
+		if (!correcto) {
+			System.out.println("Articulo no encontrado");
+		}
 
 	}
 
 	public void mostrarInformacion() {
+		boolean correcto=true;
 		for (int i = 0; i < almacen.length; i++) {
 			for (int j = 0; j < almacen[i].length; j++) {
-				if ((almacen[i][j] != null)) {
+				if ((almacen[i][j] != null && almacen[i][j].getIdentificador() != "")) {
 					System.out.println(almacen[i][j]);
+					correcto=true;
+				} else {
+					correcto=true;
 				}
 
 			}
 		}
-
+		if (!correcto) {
+			System.out.println("almacen vacio");
+		}
 	}
 
 }
